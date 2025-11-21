@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Guia Digital Acessível do Museu do Piauí com recursos para pessoas com deficiência visual e auditiva">
+    <title>Guia Digital Acessível - Museu do Piauí</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-to-content">Pular para o conteúdo principal</a>
+
+    <div class="accessibility-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
+        <button class="accessibility-btn" onclick="toggleHighContrast(event)" aria-label="Alternar alto contraste">
+            <i class="fas fa-adjust"></i>
+            <span>Alto Contraste</span>
+        </button>
+        <button class="accessibility-btn" onclick="increaseFontSize()" aria-label="Aumentar fonte">
+            <i class="fas fa-plus"></i>
+            <span>A+</span>
+        </button>
+        <button class="accessibility-btn" onclick="decreaseFontSize()" aria-label="Diminuir fonte">
+            <i class="fas fa-minus"></i>
+            <span>A-</span>
+        </button>
+        <button class="accessibility-btn" onclick="toggleVLibras(event)" aria-label="Ativar Libras">
+            <i class="fas fa-hands"></i>
+            <span>Libras</span>
+        </button>
+        <button class="accessibility-btn" onclick="toggleScreenReader(event)" aria-label="Ativar narração">
+            <i class="fas fa-volume-up"></i>
+            <span>Narração</span>
+        </button>
+    </div>
+
+    <div class="audio-playing-indicator" id="audioIndicator">
+        <i class="fas fa-volume-up fa-2x"></i>
+        <div>
+            <strong>Reproduzindo áudio</strong><br>
+            <button onclick="stopAudio()"
+                style="background: none; border: none; color: white; text-decoration: underline; cursor: pointer;">Parar</button>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-landmark"></i>
+                <span>Museu do Piauí</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#info">Informações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pecas">Acervo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="container">
+            <h1><i class="fas fa-mobile-alt"></i> Guia Digital Interativo e Acessível</h1>
+            <p>Explore o Museu do Piauí com recursos de acessibilidade para todos</p>
+            <button class="btn btn-custom" onclick="scrollToSection('mapa')">
+                <i class="fas fa-play-circle"></i>
+                <span>Iniciar Visita Virtual</span>
+            </button>
+                        <button class="audio-description-btn" onclick="playAudioDescription('hero', event)">
+                <i class="fas fa-headphones"></i>
+                <span>Ouvir Áudio-Descrição</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="info" class="container my-5">
+            <h2 class="section-title">Informações Práticas</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <article class="info-card text-center">
+                        <i class="fas fa-clock"></i>
+                        <h3>Horários de Funcionamento</h3>
+                        <p><strong>Terça a Sexta:</strong> 8h às 17h</p>
+                        <p><strong>Sábado:</strong> 9h às 15h</p>
+                        <p><strong>Fechado:</strong> Domingo e Segunda</p>
+                        <button class="audio-description-btn" onclick="playAudioDescription('horarios', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir</span>
+                        </button>
+                    </article>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <article class="info-card text-center">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>Ingressos e Visitas</h3>
+                        <p><strong>Entrada Gratuita</strong></p>
+                        <p>Visitas guiadas com agendamento</p>
+                        <p>Grupos escolares: agendar previamente</p>
+                        <button class="audio-description-btn" onclick="playAudioDescription('ingressos', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir</span>
+                        </button>
+                    </article>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <article class="info-card text-center">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Localização</h3>
+                        <p>Centro Histórico de Teresina</p>
+                        <p>Praça Marechal Deodoro, s/n</p>
+                        <button class="btn btn-custom btn-sm mt-2" onclick="openGoogleMaps()">
+                            <i class="fas fa-directions"></i> Ver Rotas
+                        </button>
+                        <button class="audio-description-btn" onclick="playAudioDescription('localizacao', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir</span>
+                        </button>
+                    </article>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <article class="info-card">
+                        <h3 class="text-center mb-4">
+                            <i class="fas fa-qrcode"></i>
+                            Como Usar o Guia Digital
+                        </h3>
+                        <div class="row g-4">
+                            <div class="col-6 col-md-3 text-center">
+                                <i class="fas fa-mobile-screen" style="font-size: 3rem; color: var(--azul-piaui);"></i>
+                                <p class="mt-3"><strong>Passo 1:</strong> Abra a câmera</p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <i class="fas fa-qrcode" style="font-size: 3rem; color: var(--azul-piaui);"></i>
+                                <p class="mt-3"><strong>Passo 2:</strong> Escaneie o QR Code</p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <i class="fas fa-volume-up" style="font-size: 3rem; color: var(--azul-piaui);"></i>
+                                <p class="mt-3"><strong>Passo 3:</strong> Ouça o conteúdo</p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <i class="fas fa-star" style="font-size: 3rem; color: var(--azul-piaui);"></i>
+                                <p class="mt-3"><strong>Passo 4:</strong> Aproveite!</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="audio-description-btn" onclick="playAudioDescription('comousar', event)">
+                                <i class="fas fa-headphones"></i>
+                                <span>Ouvir Instruções Completas</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="mapa" class="container my-5">
+            <h2 class="section-title">Mapa Interativo do Museu</h2>
+            <div class="map-container text-center">
+                <p>Clique nas salas para explorar o acervo:</p>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <button class="room-button" onclick="showRoom('prehistoria')">
+                            <i class="fas fa-bone"></i>
+                            <span>Sala Pré-História</span>
+                        </button>
+                        <button class="room-button" onclick="showRoom('indigena')">
+                            <i class="fas fa-feather"></i>
+                            <span>Cultura Indígena</span>
+                        </button>
+                        <button class="room-button" onclick="showRoom('colonial')">
+                            <i class="fas fa-church"></i>
+                            <span>Período Colonial</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pecas" class="container my-5">
+            <h2 class="section-title">Acervo em Destaque</h2>
+            <div class="pieces-grid">
+                <article class="piece-card">
+                    <img src="https://via.placeholder.com/400x300/00743F/FFFFFF?text=Fosseis"
+                        alt="Fósseis Pré-Históricos">
+                    <div class="piece-card-body">
+                        <h3>Fósseis Pré-Históricos</h3>
+                        <p>Importantes fósseis encontrados na região, datados de milhares de anos atrás.</p>
+                        <button class="audio-description-btn" onclick="playAudioDescription('prehistoria', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir Descrição</span>
+                        </button>
+                        <span class="libras-badge">
+                            <i class="fas fa-hands"></i>
+                            <span>Libras</span>
+                        </span>
+                    </div>
+                </article>
+
+                <article class="piece-card">
+                    <img src="https://via.placeholder.com/400x300/0066B3/FFFFFF?text=Ceramica" alt="Cerâmica Indígena">
+                    <div class="piece-card-body">
+                        <h3>Cerâmica Indígena</h3>
+                        <p>Peças de cerâmica produzidas pelos povos indígenas com padrões únicos.</p>
+                        <button class="audio-description-btn" onclick="playAudioDescription('indigena', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir Descrição</span>
+                        </button>
+                        <span class="libras-badge">
+                            <i class="fas fa-hands"></i>
+                            <span>Libras</span>
+                        </span>
+                    </div>
+                </article>
+
+                <article class="piece-card">
+                    <img src="https://via.placeholder.com/400x300/FDB913/000000?text=Moveis" alt="Mobiliário Colonial">
+                    <div class="piece-card-body">
+                        <h3>Mobiliário Colonial</h3>
+                        <p>Móveis e objetos do período colonial que ilustram o modo de vida da época.</p>
+                        <button class="audio-description-btn" onclick="playAudioDescription('colonial', event)">
+                            <i class="fas fa-headphones"></i>
+                            <span>Ouvir Descrição</span>
+                        </button>
+                        <span class="libras-badge">
+                            <i class="fas fa-hands"></i>
+                            <span>Libras</span>
+                        </span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="feedback" class="container my-5">
+            <h2 class="section-title">Deixe seu Feedback</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article class="info-card">
+                        <form onsubmit="submitFeedback(event)">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome:</label>
+                                <input type="text" class="form-control" id="nome" required
+                                    placeholder="Digite seu nome">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail:</label>
+                                <input type="email" class="form-control" id="email" required
+                                    placeholder="Digite seu e-mail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mensagem" class="form-label">Sua Mensagem:</label>
+                                <textarea class="form-control" id="mensagem" rows="5" required
+                                    placeholder="Conte-nos sobre sua experiência"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Enviar Feedback</span>
+                                </button>
+                            </div>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (86) 3221-9023</p>
+                    <p><i class="fas fa-envelope"></i> contato@museu.pi.gov.br</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h4>Redes Sociais</h4>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube fa-2x"></i></a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h4>Acessibilidade</h4>
+                    <p>Site segue diretrizes WCAG 2.1</p>
+                    <p>Desenvolvido com foco em inclusão</p>
+                </div>
+            </div>
+            <hr style="background: white;">
+            <p>&copy; 2025 Museu do Piauí</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
