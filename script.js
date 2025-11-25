@@ -393,9 +393,7 @@ const Navigation = {
      * Abre o Google Maps com rotas para o museu
      */
     openGoogleMaps() {
-        const lat = -5.0892;
-        const lng = -42.8019;
-        const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+        const url = `https://www.google.com/maps/place/Museu+do+Piau%C3%AD/@-5.0898374,-42.8179193,18z/data=!4m6!3m5!1s0x78e377daa167287:0x9f26517e102ced6e!8m2!3d-5.0898544!4d-42.8175118!16s%2Fg%2F12238c9d?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D`;
 
         try {
             const newWindow = window.open(url, '_blank');
