@@ -220,19 +220,34 @@ body.font-xlarge {
     margin-bottom: clamp(15px, 3vw, 25px);
 }
 
+.btn.btn-custom,
 .btn-custom {
     background: var(--amarelo-piaui);
     color: var(--preto);
-    padding: clamp(12px, 2vw, 18px) clamp(25px, 4vw, 45px);
-    border-radius: 30px;
+    padding: 0.9rem 1.8rem !important;
+    border-radius: 50px;
     font-weight: bold;
-    border: 3px solid var(--amarelo-piaui);
+    border: none !important;
     transition: all 0.3s;
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 1rem !important;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.8rem;
     cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    min-height: calc(0.9rem * 2 + 1rem);
+    height: auto;
+}
+
+.btn.btn-custom i,
+.btn-custom i {
+    font-size: 1.2rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-custom:hover {
@@ -280,16 +295,41 @@ body.font-xlarge {
     background: var(--azul-piaui);
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.9rem 1.8rem;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.8rem;
     font-size: 1rem;
     transition: all 0.3s;
     margin-top: 1rem;
+    box-sizing: border-box;
+    line-height: 1;
+    min-height: calc(0.9rem * 2 + 1rem);
+    height: auto;
+}
+
+.audio-description-btn i,
+.audio-description-btn .fa-headphones,
+.audio-description-btn i.fa-headphones {
+    font-size: 1.2rem !important;
+    opacity: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+.audio-description-btn span {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
+    margin: 0 !important;
 }
 
 .audio-description-btn:hover {
